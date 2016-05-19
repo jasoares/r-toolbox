@@ -14,6 +14,16 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+# The following line is provided for convenience purposes. It has the downside
+# of increasing the boot-up time by auto-requiring all files in the support
+# directory. Alternatively, in the individual `*_spec.rb` files, manually
+# require only the support files necessary.
+#
+# Dir[File.expand_path("../support/*.rb", __FILE__)].each { |f| require f }
+
+require File.expand_path('../support/vcr.rb', __FILE__)
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
