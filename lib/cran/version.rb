@@ -35,8 +35,9 @@ module Cran
     # The chosen gem tree-top-dcf does not allow to select which fields to parse
     # and is really slow parsing the packages
     def fetch
-      Dcf.parse(version_info)[0].slice(*INFO_MAPPING.keys).each do |k, v|
-        instance_variable_set :"@#{INFO_MAPPING[k]}", v
+      parser = DebianControlParser.new(version_info)
+      parser.fields do |name, value|
+        instance_variable_set :"@#{INFO_MAPPING[name]}", value if INFO_MAPPING[name]
       end
       @fetched = true
     end

@@ -1,5 +1,5 @@
 require 'httparty'
-require 'dcf'
+require 'debian_control_parser'
 require 'cran/maintainer'
 require 'cran/server'
 require 'cran/version'

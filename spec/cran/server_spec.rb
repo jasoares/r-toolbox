@@ -21,10 +21,10 @@ module Cran
           ).once
         end
 
-        it 'parses the request response using Dcf::parse' do
+        it 'parses the request response using DebianControlParser' do
           response = double('Response', body: '')
           allow(HTTParty).to receive(:get).with(Server::LIST_URL).and_return(response)
-          expect(Dcf).to receive(:parse).with(response.body).and_return([])
+          expect(DebianControlParser).to receive(:new).with(response.body).and_call_original
           server.packages
         end
 

@@ -39,8 +39,7 @@ module Cran
           <<~eos
             Package: A3
             Type: Package
-            Title: Accurate, Adaptable, and Accessible Error Metrics for Predictive
-                    Models
+            Title: Accurate, Adaptable, and Accessible Error Metrics for Predictive Models
             Version: 1.0.0
             Date: 2015-08-15
             Author: Scott Fortmann-Roe
@@ -93,8 +92,10 @@ module Cran
               allow(version).to receive(:version_info).and_return(description_content)
             end
 
-            it 'uses Dcf::parse for parsing version info' do
-              expect(Dcf).to receive(:parse).with(description_content).and_call_original
+            it 'uses DebianControlParser for parsing version info' do
+              parser = double(DebianControlParser, fields: enum_for(:each))
+              expect(DebianControlParser).to receive(:new)
+                .with(description_content).and_return(parser)
               version.fetch
             end
 
@@ -129,7 +130,7 @@ module Cran
             it 'sets the instance variable @title' do
               expect { version.fetch }.to change {
                 version.send(:instance_variable_get, :@title)
-              }.from(nil).to('Accurate, Adaptable, and Accessible Error Metrics for Predictive Models')
+              }.from(nil).to("Accurate, Adaptable, and Accessible Error Metrics for Predictive Models")
             end
           end
         end

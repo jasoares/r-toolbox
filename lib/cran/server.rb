@@ -11,9 +11,18 @@ module Cran
 
     def packages
       response = HTTParty.get(list_url)
-      Dcf.parse(response.body).map do |pkg|
-        Package.new self, pkg['Package'], pkg['Version']
+      parser = DebianControlParser.new(response.body)
+      packages = []
+      parser.paragraphs do |p|
+        name, version = nil, nil
+        p.fields do |key, value|
+          name ||= value if key == 'Package'
+          version ||= value if key == 'Version'
+          break if name && version
+        end
+        packages << Package.new(self, name, version)
       end
+      packages
     end
   end
 end

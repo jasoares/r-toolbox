@@ -30,7 +30,7 @@ gem 'jbuilder', '~> 2.0'
 # gem 'capistrano-rails', group: :development
 
 gem 'httparty'
-gem 'treetop-dcf'
+gem 'debian-control-parser'
 
 group :test do
   gem 'rspec-rails'
