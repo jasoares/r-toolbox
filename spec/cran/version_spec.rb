@@ -55,19 +55,19 @@ module Cran
           eos
         end
 
-        describe '#version_info' do
-          it 'it executes `curl -s http://cran.r-project.org/src/contrib/A3_1.0.0.tar.gz | tar -xO A3/DESCRIPTION`' do
-            expect(version).to receive(:`)
+        describe '::fetch_description' do
+          it 'it executes curl and tar with the passed arguments' do
+            expect(Version).to receive(:`)
               .with('curl -s http://cran.r-project.org/src/contrib/A3_1.0.0.tar.gz | tar -xO A3/DESCRIPTION')
               .and_return(description_content)
-            version.version_info
+            Version.fetch_description('http://cran.r-project.org/src/contrib/A3_1.0.0.tar.gz', 'A3/DESCRIPTION')
           end
         end
 
         describe '#maintainer' do
           context 'given a valid description content is loaded' do
             before(:each) do
-              allow(version).to receive(:version_info).and_return(description_content)
+              allow(Version).to receive(:fetch_description).and_return(description_content)
             end
 
             it 'returns an instance of Maintainer' do
@@ -83,13 +83,13 @@ module Cran
 
         describe '#fetch' do
           it 'relies on version info to get the data' do
-            expect(version).to receive(:version_info).and_return(description_content)
+            expect(Version).to receive(:fetch_description).and_return(description_content)
             version.fetch
           end
 
           context 'given a valid description content is loaded' do
             before(:each) do
-              allow(version).to receive(:version_info).and_return(description_content)
+              allow(Version).to receive(:fetch_description).and_return(description_content)
             end
 
             it 'uses DebianControlParser for parsing version info' do
