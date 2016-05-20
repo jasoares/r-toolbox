@@ -1,0 +1,23 @@
+%div.jumbotron
+  %div.row
+    %div.col-md-2
+    %div.col-md-8
+      %div.row
+        %div.col-md-12
+          %h1
+            = link_to 'R Toolbox', root_url
+            %span.small
+              Listing of R packages from Cran servers
+          %p.smal
+            inspired by
+            = link_to 'Ruby Toolbox', 'http://rubytoolbox.com'
+      %div.row
+        %div.col-md-4
+        %div.col-md-4.text-center
+          = form_tag '/', method: :get, class: 'form-inline input-group input-group-lg' do
+            = label_tag 'Search', nil, class: 'sr-only'
+            = text_field_tag 'search', @query, placeholder: 'search packages...', class: 'form-control'
+            %span.input-group-btn
+              = button_tag class: 'btn btn-default' do
+                %span.fa.fa-search
+    %div.col-md-2

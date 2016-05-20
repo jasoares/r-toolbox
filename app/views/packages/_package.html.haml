@@ -1,0 +1,36 @@
+%div.row.well
+  %div.col-md-4
+    %div.row
+      %div.col-md-12
+        %h3
+          = link_to pkg.url, target: '_blank', class: 'disable-underline' do
+            %p
+              %span.fa.fa-download
+              = pkg.name
+              %small
+                = "v#{pkg.version}"
+    %div.row
+      %div.col-md-12
+        %h4
+          = pkg.title
+  %div.col-md-8
+    %div.row
+      %div.col-md-12
+        %h4.text-uppercase.small
+          Description
+        %p
+          = truncate(pkg.description, length: 256)
+    %div.row
+      %div.col-md-6
+        %h4.text-uppercase.small
+          Authors
+        %p
+          = pkg.authors
+      %div.col-md-6
+        %h4.text-uppercase.small
+          Maintainer
+        %div
+          = mail_to pkg.maintainer.email, target: '_blank', class: 'disable-underline' do
+            = image_tag gravatar_url(pkg.maintainer.email, 32), alt: pkg.maintainer.name, title: pkg.maintainer.name
+            &nbsp;
+            = pkg.maintainer.name

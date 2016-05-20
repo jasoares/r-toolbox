@@ -9,4 +9,18 @@ class Package < ApplicationRecord
   def_delegators :latest_version, :authors, :description, :maintainer,
     :publication, :title
   def_delegator :latest_version, :value, :version
+
+  scope :search_query, -> (query) {
+    joins(:versions)
+    .where(
+      'packages.name ILIKE ? OR
+      versions.title ILIKE ? OR
+      versions.description ILIKE ?',
+      *(["%#{query}%"] * 3)
+    )
+  }
+
+  def url
+    "http://cran.r-project.org/src/contrib/#{name}_#{version}.tar.gz"
+  end
 end

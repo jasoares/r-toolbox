@@ -1,0 +1,31 @@
+%div.jumbotron
+  %div.row
+    %div.col-md-2
+    %div.col-md-8
+      %div.row
+        %div.col-md-12
+          %div.row
+            %div.col-md-4
+              %h5
+                Open Source
+              %ul.list-unstyled
+                %li
+                  %span.fa.fa-github
+                  = link_to 'Source code', 'http://github.com/jasoares/r_toolbox'
+            %div.col-md-4
+              %h5
+                Who?
+              %p.small
+                The R Toolbox is brought to you from Lisbon since 2016 by João Soares.
+            %div.col-md-4
+              %h5
+                Stats
+              %p
+                Currently
+                = @package_count
+                projects with a total of
+                = @version_count
+                versions released maintained by
+                = @maintainer_count
+                people.
+    %div.col-md-2

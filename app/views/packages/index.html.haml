@@ -1,0 +1,11 @@
+%div.row
+  %div.col-md-2
+  %div.col-md-8
+    %p
+      = page_entries_info @packages
+    - @packages.each do |pkg|
+      = render partial: 'package', locals: { pkg: pkg }
+    %div.row
+      %div.col-md-12.text-center
+        = will_paginate @packages
+  %div.col-md-2
