@@ -83,7 +83,7 @@ module Cran
     end
 
     def self.fetch_description(url, info_file)
-      `curl -s #{url} | tar -xO #{info_file}`
+      `curl -s #{url} | tar -xzO #{info_file}`
         .encode('UTF-8', invalid: :replace, replace: '?')
     end
   end
