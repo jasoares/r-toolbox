@@ -1,5 +1,9 @@
 # README
 
+[![Dependency Status](https://gemnasium.com/badges/github.com/jasoares/r-toolbox.svg)](https://gemnasium.com/github.com/jasoares/r-toolbox)
+[![Code Climate](https://codeclimate.com/github/jasoares/r-toolbox/badges/gpa.svg)](https://codeclimate.com/github/jasoares/r-toolbox)
+
+
 R Community Package listing with direct links to CRAN package hosting servers.
 
 ## About [CRAN](https://cran.r-project.org)
