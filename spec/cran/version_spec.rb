@@ -58,7 +58,7 @@ module Cran
         describe '::fetch_description' do
           it 'it executes curl and tar with the passed arguments' do
             expect(Version).to receive(:`)
-              .with('curl -s http://cran.r-project.org/src/contrib/A3_1.0.0.tar.gz | tar -xO A3/DESCRIPTION')
+              .with('curl -s http://cran.r-project.org/src/contrib/A3_1.0.0.tar.gz | tar -xzO A3/DESCRIPTION')
               .and_return(description_content)
             Version.fetch_description('http://cran.r-project.org/src/contrib/A3_1.0.0.tar.gz', 'A3/DESCRIPTION')
           end
