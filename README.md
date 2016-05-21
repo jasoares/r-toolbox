@@ -1,5 +1,6 @@
 # README
 
+[![Build Status](https://travis-ci.org/jasoares/r-toolbox.svg?branch=master)](https://travis-ci.org/jasoares/r-toolbox)
 [![Dependency Status](https://gemnasium.com/badges/github.com/jasoares/r-toolbox.svg)](https://gemnasium.com/github.com/jasoares/r-toolbox)
 [![Code Climate](https://codeclimate.com/github/jasoares/r-toolbox/badges/gpa.svg)](https://codeclimate.com/github/jasoares/r-toolbox)
 
