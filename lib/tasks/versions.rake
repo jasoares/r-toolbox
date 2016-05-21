@@ -2,8 +2,7 @@ namespace :versions do
   desc 'Detect and update database with new information available from cran servers'
   task :load => :environment do
     require 'cran'
-
-    logger = Rails.env.development? ? Logger.new(STDOUT) : Logger.new('log/load_versions.log')
+    logger = Rails.logger
 
     start_time = Time.current
 
