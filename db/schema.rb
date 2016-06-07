@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607085015) do
+ActiveRecord::Schema.define(version: 20160607121635) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collaborations", force: :cascade do |t|
+    t.boolean "author",           default: false
+    t.boolean "contributor",      default: false
+    t.boolean "creator",          default: false
+    t.boolean "copyright_holder", default: false
+    t.integer "collaborator_id"
+    t.integer "version_id"
+    t.index ["collaborator_id"], name: "index_collaborations_on_collaborator_id", using: :btree
+    t.index ["version_id", "collaborator_id"], name: "index_collaborations_on_version_id_and_collaborator_id", unique: true, using: :btree
+    t.index ["version_id"], name: "index_collaborations_on_version_id", using: :btree
+  end
 
   create_table "collaborators", force: :cascade do |t|
     t.string   "name"
@@ -53,6 +65,8 @@ ActiveRecord::Schema.define(version: 20160607085015) do
     t.index ["package_id"], name: "index_versions_on_package_id", using: :btree
   end
 
+  add_foreign_key "collaborations", "collaborators"
+  add_foreign_key "collaborations", "versions"
   add_foreign_key "versions", "maintainers"
   add_foreign_key "versions", "packages"
 end
