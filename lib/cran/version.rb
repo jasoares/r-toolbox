@@ -5,7 +5,7 @@ module Cran
     extend Forwardable
 
     INFO_MAPPING = {
-      'Author' => 'authors',
+      'Author' => 'authors_str',
       'Date/Publication' => 'publication_str',
       'Description' => 'description',
       'Maintainer' => 'maintainer_str',
@@ -14,7 +14,7 @@ module Cran
 
     def_delegators :@package, :name, :info_file
 
-    attr_reader :authors, :description, :maintainer_str, :package,
+    attr_reader :description, :maintainer_str, :package,
       :publication_str, :title, :value
 
     def initialize(package, value)
@@ -28,6 +28,10 @@ module Cran
         fetch unless fetched?
         instance_variable_get :"@#{v}"
       end
+    end
+
+    def authors
+      Author.from_string(authors_str)
     end
 
     # if I had more time I would try to make this more failsafe,
